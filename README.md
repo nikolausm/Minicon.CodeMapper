@@ -47,7 +47,7 @@ public class PersonProfile : Profile
 **2. Registrieren** (Microsoft.Extensions.DependencyInjection):
 
 ```csharp
-services.AddMiniconMapper(typeof(PersonProfile).Assembly);
+services.AddCodeMapper(typeof(PersonProfile).Assembly);
 ```
 
 **3. Mappen:**
@@ -95,7 +95,7 @@ In den meisten Fällen genügt das Ersetzen des Namespaces und der DI-Methode:
 | `class X : Profile` | `class X : Profile` (unverändert) |
 | `CreateMap<A, B>()...` | unverändert |
 | `IMapper` / `mapper.Map<T>(x)` | unverändert |
-| `services.AddAutoMapper(asm)` | `services.AddMiniconMapper(asm)` |
+| `services.AddAutoMapper(asm)` | `services.AddCodeMapper(asm)` |
 
 ## Wie es funktioniert
 

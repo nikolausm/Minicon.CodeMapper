@@ -107,7 +107,7 @@ public class MappingTests
     public void Works_through_dependency_injection()
     {
         var provider = new ServiceCollection()
-            .AddMiniconMapper(typeof(PersonProfile).Assembly)
+            .AddCodeMapper(typeof(PersonProfile).Assembly)
             .BuildServiceProvider();
 
         var mapper = provider.GetRequiredService<IMapper>();

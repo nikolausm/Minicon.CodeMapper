@@ -7,7 +7,7 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 
     <!-- NuGet / Packaging -->
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Michael Nikolaus</Authors>
     <Company>Minicon</Company>
     <Product>Minicon.CodeMapper</Product>
