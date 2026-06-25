@@ -1,0 +1,64 @@
+name: Publish to NuGet
+
+# Veröffentlicht das Paket auf nuget.org via Trusted Publishing (OIDC) –
+# kein langlebiger API-Key nötig. Ausgelöst durch ein GitHub Release oder manuell.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Paketversion (z. B. 0.1.0). Leer = Version aus Directory.Build.props."
+        required: false
+
+permissions:
+  contents: read
+  id-token: write   # erforderlich für OIDC / Trusted Publishing
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+
+      - name: Version bestimmen
+        id: ver
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            V="${{ github.event.release.tag_name }}"; V="${V#v}"
+          else
+            V="${{ github.event.inputs.version }}"
+          fi
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "Version: ${V:-<aus Directory.Build.props>}"
+
+      - name: Test
+        run: dotnet test -c Release
+
+      - name: Pack
+        run: |
+          VERSION="${{ steps.ver.outputs.version }}"
+          ARGS=""
+          [ -n "$VERSION" ] && ARGS="-p:Version=$VERSION"
+          dotnet pack src/Minicon.CodeMapper/Minicon.CodeMapper.csproj -c Release $ARGS
+
+      - name: NuGet-Login (Trusted Publishing via OIDC)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ vars.NUGET_USER }}
+
+      - name: Push
+        run: |
+          dotnet nuget push artifacts/*.nupkg \
+            --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
