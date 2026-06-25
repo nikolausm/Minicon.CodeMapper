@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Minicon.CodeMapper.SourceGenerator/Minicon.CodeMapper.SourceGenerator.csproj" />
+    <Project Path="src/Minicon.CodeMapper/Minicon.CodeMapper.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Minicon.CodeMapper.Tests/Minicon.CodeMapper.Tests.csproj" />
+  </Folder>
+</Solution>

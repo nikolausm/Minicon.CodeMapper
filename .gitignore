@@ -1,0 +1,25 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.idea/
+.vscode/
+*.DotSettings.user
+
+# Build / publish
+artifacts/
+[Pp]ackages/
+*.nupkg
+*.snupkg
+
+# Test results
+[Tt]est[Rr]esult*/
+coverage/
+*.trx
+*.coverage
+
+# OS
+.DS_Store
+Thumbs.db

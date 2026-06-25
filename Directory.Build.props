@@ -1,0 +1,22 @@
+<Project>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+
+    <!-- NuGet / Packaging -->
+    <Version>0.1.0</Version>
+    <Authors>Michael Nikolaus</Authors>
+    <Company>Minicon</Company>
+    <Product>Minicon.CodeMapper</Product>
+    <PackageProjectUrl>https://github.com/nikolausm/Minicon.CodeMapper</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nikolausm/Minicon.CodeMapper</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Schlanker, source-generator-basierter Objekt-Mapper mit AutoMapper-ähnlicher Profile/CreateMap-API. AOT- und Trimming-fähig.</Description>
+    <PackageTags>mapping;mapper;automapper;source-generator;aot;dto</PackageTags>
+  </PropertyGroup>
+
+</Project>
